@@ -1,12 +1,1 @@
-/data/
-/bad.list
-/darknet.exe
-/darknet.iobj
-/darknet.ipdb
-/darknet.pdb
-/opencv_ffmpeg331_64.dll
-/opencv_world331.dll
-/pthreadGC2.dll
-/pthreadVC2.dll
-/yolo-obj.cfg
 /yolo-obj_1000.weights
