@@ -22,8 +22,8 @@ module.exports = class {
         this.videoLocation,
         '-i',
         '0',
-        // '-thresh',
-        // '0.2'
+        '-thresh',
+        '0.3'
       ],
       {cwd}
     );

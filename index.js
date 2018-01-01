@@ -7,7 +7,7 @@ const Darknet = require('./darknet');
 const _       = require('lodash');
 const port    = 3000;
 
-const streamUri   = 'http://192.168.1.13:8080/video';
+const streamUri   = 'http://192.168.178.22:8080/video';
 const bitstampApi = 'https://www.bitstamp.net/api/v2/ticker/btceur/';
 
 // BITCOIN
@@ -39,7 +39,7 @@ http.listen(port, function () {
 // SOCKET.IO
 io.on('connection', function (socket) {
   console.log('Web client connected');
-  //socket.emit('detected', { x: 30, y: 300, btc: +bitstamp.ask });
+  // socket.emit('detected', {"raw":{"left":139,"right":595,"top":161,"bottom":370,"obj_id":0,"obj":"pet","prob":45},"x":367,"y":265.5,"btc":12594.99});
 
   socket.on('disconnect', () => {
     console.log('Web client disconnected');
@@ -48,13 +48,20 @@ io.on('connection', function (socket) {
 // SOCKET.IO END
 
 // DARKNET
+const notes = {
+  '5EUR': 5,
+  '10EUR': 10,
+  '20EUR': 20,
+  '50EUR': 50
+};
+
 const darknet = new Darknet(
   streamUri,
   (data) => {
     const n = _.maxBy(data, 'prob');
     if (n) {
       console.log(n);
-      io.sockets.emit('detected', { x: (n.left + n.right) / 2, y: (n.top +  n.bottom) / 2, btc: +bitstamp.ask });
+      io.sockets.emit('detected', { raw: n, x: (n.left + n.right) / 2, y: (n.top +  n.bottom) / 2, btc: (notes[n.obj])/(+bitstamp.ask) });
     } else {
       io.sockets.emit('not-detected');
     }

@@ -152,7 +152,7 @@ function update(delta) {
     if (dy < 0 && store.cY < store.detected.y) {
       store.cY = store.detected.y
     }
-    console.log(store.cX, store.cY);
+    // console.log(store.cX, store.cY);
   }
 }
 
@@ -163,8 +163,22 @@ function draw(delta) {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
   } else {
 
-    var x = store.cX;
-    var y = store.cY;
+    var scaleW = (video.width * 1) / video.naturalWidth;
+    var scaleH = (video.height * 1) / video.naturalHeight;
+    console.log(scaleW, scaleH);
+
+    ctx.strokeStyle = 'red';
+    ctx.lineWidth = 5;
+    ctx.rect(
+      store.detected.raw.left * scaleW,
+      store.detected.raw.top * scaleH,
+      (store.detected.raw.right - store.detected.raw.left) * scaleW,
+      (store.detected.raw.bottom-store.detected.raw.top) * scaleH
+    );
+    ctx.stroke();
+
+    var x = store.cX * scaleW;
+    var y = store.cY * scaleH;
     ctx.strokeStyle = "white";
     ctx.lineWidth = 5;
     ctx.beginPath();
