@@ -9,6 +9,7 @@ var canvas = document.getElementById('canvas-info'),
     bY = 30,
     mX = 10,
     mY = 20,
+    debug = false,
     interval     =    1000/fps,
     lastTime     =    (new Date()).getTime(),
     currentTime  =    0,
@@ -165,17 +166,18 @@ function draw(delta) {
 
     var scaleW = (video.width * 1) / video.naturalWidth;
     var scaleH = (video.height * 1) / video.naturalHeight;
-    console.log(scaleW, scaleH);
 
-    ctx.strokeStyle = 'red';
-    ctx.lineWidth = 5;
-    ctx.rect(
-      store.detected.raw.left * scaleW,
-      store.detected.raw.top * scaleH,
-      (store.detected.raw.right - store.detected.raw.left) * scaleW,
-      (store.detected.raw.bottom-store.detected.raw.top) * scaleH
-    );
-    ctx.stroke();
+    if (debug) {
+      ctx.strokeStyle = 'red';
+      ctx.lineWidth   = 5;
+      ctx.rect(
+        store.detected.raw.left * scaleW,
+        store.detected.raw.top * scaleH,
+        (store.detected.raw.right - store.detected.raw.left) * scaleW,
+        (store.detected.raw.bottom - store.detected.raw.top) * scaleH
+      );
+      ctx.stroke();
+    }
 
     var x = store.cX * scaleW;
     var y = store.cY * scaleH;
