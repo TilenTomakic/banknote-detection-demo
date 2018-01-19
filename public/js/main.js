@@ -191,7 +191,7 @@ function draw(delta) {
 
     ctx.font = "30px Arial";
     ctx.fillStyle = "white";
-    ctx.fillText(store.detected.btc + " BTC", x + 90, y - 110);
+    ctx.fillText(store.detected.raw.obj + " = " + store.detected.btc + " BTC", x + 90, y - 110);
   }
 }
 

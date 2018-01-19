@@ -7,7 +7,10 @@ const Darknet = require('./darknet');
 const _       = require('lodash');
 const port    = 3000;
 
-const streamUri   = 'http://192.168.178.22:8080/video';
+// CHANGE IP TO YOUR VIDEO STREAM URL
+const streamUri   = 'http://192.168.1.4:8080/video';
+
+//const streamUri   = 'http://193.2.178.44:8080/videofeed';
 const bitstampApi = 'https://www.bitstamp.net/api/v2/ticker/btceur/';
 
 // BITCOIN

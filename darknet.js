@@ -18,10 +18,12 @@ module.exports = class {
         'demo',
         'data/obj.data',
         'yolo-obj.cfg',
-        'yolo-obj_1000.weights',
+        'yolo-obj_800.weights',
         this.videoLocation,
-        '-i',
-        '0',
+
+        '-i', // USE GPU instead of CPU
+        '0',  // USE GPU instead of CPU
+
         '-thresh',
         '0.3'
       ],
