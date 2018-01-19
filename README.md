@@ -29,12 +29,23 @@ darknet/build/darknet/x64/pthreadVC2.dll    -->  darknet/pthreadVC2.dll
 ``` 
 
 ## Running project
-In root directory of project run:
+
+First you will need to provide camera stream URI. Project intentionally doesn't use computer camera since it usually has to low quality. You can use any
+Open `index.js` file and change `streamUri` value to your camera stream URI.
+Example:
+```
+// CHANGE IP TO YOUR VIDEO STREAM URL
+const streamUri   = 'http://192.168.1.4:8080/video';
+```
+The easiest way of providing camera video stream is by mobile phone. Install any IP camera app.
+On android for example you can use [IP Webcam](https://play.google.com/store/apps/details?id=com.pas.webcam).
+
+After you have working camera video stream you can start server. In root directory of project run:
 ```
 node index.js
 ```
 
-Your app will be available on port 3000. Open browser `http://localhost:3000`.
+Your app will be available on port 3000. Open browser on `http://localhost:3000`.
 
 ### Troubleshooting
 If you have problems with object detection (don't have NVIDEA card or CUDA 9.0 installed) you can turn off GPU detection by opening
